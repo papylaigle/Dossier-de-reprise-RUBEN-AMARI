@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier Ballas — Ruben Amari</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pd: #26215C;
+    --pm: #534AB7;
+    --pl: #7F77DD;
+    --pb: #EEEDFE;
+    --pp: #F0EEFF;
+    --gold: #D4A843;
+    --dark: #12112a;
+    --grey: #3a3a4a;
+    --light: #f8f7ff;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--dark);
+    color: #eee;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--pd);
+    border-bottom: 3px solid var(--gold);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #fff;
+    letter-spacing: 4px;
+    padding: 0.6rem 0;
+    white-space: nowrap;
+  }
+
+  .logo span { color: var(--gold); }
+
+  /* ── TABS NAV ── */
+  nav {
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  nav button {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 1.1rem 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  nav button:hover { color: rgba(255,255,255,0.85); }
+
+  nav button.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── CONTENT ── */
+  main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  .tab-panel { display: none; animation: fadeIn 0.25s ease; }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    color: #fff;
+    background: var(--pm);
+    padding: 0.7rem 1.4rem;
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sec-title::before, .sec-title::after {
+    content: '◆';
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(127,119,221,0.25);
+    border-radius: 6px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--pl);
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(127,119,221,0.2);
+  }
+
+  p { font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.8); margin-bottom: 0.7rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── COVER ── */
+  .cover-banner {
+    background: var(--pd);
+    text-align: center;
+    padding: 3rem 2rem 2.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--pm);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(83,74,183,0.06) 40px, rgba(83,74,183,0.06) 41px
+    );
+  }
+
+  .cover-ballas {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: #fff;
+    letter-spacing: 10px;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(127,119,221,0.5);
+    position: relative;
+  }
+
+  .cover-nation {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0.5rem 0 2rem;
+    position: relative;
+  }
+
+  .cover-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 6px;
+    color: #fff;
+    position: relative;
+  }
+
+  .cover-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    position: relative;
+  }
+
+  .cover-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+
+  .badge {
+    background: rgba(83,74,183,0.3);
+    border: 1px solid var(--pl);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--pb);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ID TABLE ── */
+  .id-table { width: 100%; border-collapse: collapse; margin-bottom: 1.2rem; }
+
+  .id-table tr:nth-child(odd) td:last-child { background: var(--pb); }
+  .id-table tr:nth-child(even) td:last-child { background: #F5F3FF; }
+
+  .id-table td {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(127,119,221,0.3);
+  }
+
+  .id-table td:first-child {
+    background: var(--pm);
+    color: #fff;
+    font-weight: 600;
+    width: 200px;
+    white-space: nowrap;
+  }
+
+  .id-table td:last-child { color: var(--grey); }
+
+  /* ── CASIER ── */
+  .casier-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+
+  .casier-table th {
+    background: var(--pm);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid rgba(127,119,221,0.3);
+  }
+
+  .casier-table td {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    border: 1px solid rgba(127,119,221,0.2);
+    color: var(--grey);
+  }
+
+  .casier-table tr:nth-child(odd) td { background: var(--pb); }
+  .casier-table tr:nth-child(even) td { background: #F5F3FF; }
+
+  .status-green { color: #2E7D32; font-weight: 600; }
+  .status-blue  { color: #1565C0; font-weight: 600; }
+  .status-orange { color: #E65100; font-weight: 600; }
+
+  /* ── SETS GRID ── */
+  .sets-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin: 1rem 0;
+  }
+
+  .set-card {
+    background: var(--pd);
+    border: 1px solid var(--pl);
+    border-radius: 4px;
+    text-align: center;
+    padding: 14px 8px;
+  }
+
+  .set-card .set-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .set-card .diamond { color: var(--pl); font-size: 1.1rem; margin-bottom: 6px; }
+
+  .set-card .set-zone {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  /* ── GROVE BOX ── */
+  .grove-box {
+    background: rgba(240,238,255,0.06);
+    border: 1px solid rgba(127,119,221,0.3);
+    border-left: 4px solid var(--pm);
+    border-radius: 4px;
+    padding: 1.3rem 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  /* ── BULLET LIST ── */
+  .bullet-list { list-style: none; padding: 0; margin: 0.5rem 0; }
+
+  .bullet-list li {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.78);
+    padding: 5px 0 5px 1.4rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '◆';
+    color: var(--pl);
+    position: absolute;
+    left: 0;
+    font-size: 0.6rem;
+    top: 8px;
+  }
+
+  /* ── PERSO GRID ── */
+  .perso-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.2rem; }
+
+  .perso-card {
+    border-radius: 6px;
+    padding: 1.2rem;
+  }
+
+  .perso-card.strengths { background: rgba(27,94,32,0.7); border: 1px solid #2E7D32; }
+  .perso-card.weaknesses { background: rgba(38,33,92,0.8); border: 1px solid var(--pl); }
+
+  .perso-card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.9rem;
+  }
+
+  .perso-card ul { list-style: none; }
+
+  .perso-card ul li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .perso-card ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── HIER TABLE ── */
+  .hier-table { width: 100%; border-collapse: collapse; margin-bottom: 1.2rem; }
+
+  .hier-table th {
+    background: var(--pm);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid rgba(127,119,221,0.4);
+  }
+
+  .hier-table td {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(127,119,221,0.2);
+    color: var(--grey);
+  }
+
+  .hier-table tr:nth-child(odd) td { background: var(--pb); }
+  .hier-table tr:nth-child(even) td { background: #F5F3FF; }
+
+  /* ── RULES ── */
+  .rules-grid { display: grid; gap: 6px; }
+
+  .rule-row {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    border: 1px solid rgba(127,119,221,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .rule-num {
+    background: var(--pm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+
+  .rule-text {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: var(--grey);
+    line-height: 1.6;
+  }
+
+  .rule-row:nth-child(odd) .rule-text { background: var(--pb); }
+  .rule-row:nth-child(even) .rule-text { background: #F5F3FF; }
+
+  /* ── QUOTE BOX ── */
+  .quote-box {
+    border: 1px solid var(--pm);
+    border-left: 4px solid var(--pm);
+    border-radius: 4px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    background: rgba(83,74,183,0.06);
+  }
+
+  .quote-box p { font-style: italic; }
+
+  .quote-sig {
+    text-align: right;
+    font-weight: 600;
+    color: var(--pl);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: #0d0c1f;
+    border-top: 1px solid rgba(127,119,221,0.2);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--pl);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 3rem;
+  }
+
+  b { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .sets-grid { grid-template-columns: repeat(2,1fr); }
+    .perso-grid { grid-template-columns: 1fr; }
+    .logo { font-size: 1.5rem; }
+    nav button { font-size: 0.68rem; padding: 0.9rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">BALLAS <span>◆</span></div>
+  <nav id="nav">
+    <button class="active" onclick="show('cover',this)">Cover</button>
+    <button onclick="show('identite',this)">Identité</button>
+    <button onclick="show('histoire',this)">Histoire</button>
+    <button onclick="show('casier',this)">Casier</button>
+    <button onclick="show('motivations',this)">Motivations</button>
+    <button onclick="show('perso',this)">Personnalité</button>
+    <button onclick="show('structure',this)">Structure</button>
+    <button onclick="show('code',this)">Code</button>
+    <button onclick="show('joueur',this)">Mot du joueur</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── COVER ── -->
+  <div class="tab-panel active" id="tab-cover">
+    <div class="cover-banner">
+      <div class="cover-ballas">BALLAS</div>
+      <div class="cover-nation">◆ Los Santos — Purple Nation ◆</div>
+      <div style="font-size:0.75rem;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:1rem;position:relative;">Dossier de reprise de territoire</div>
+      <div class="cover-name">RUBEN AMARI</div>
+      <div class="cover-sub">Ancien de Fraternity City • Gars du Bloc</div>
+      <div style="height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem auto;width:60%;position:relative;"></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;position:relative;">FratWorld Roleplay • Serveur US</div>
+      <div class="cover-badges">
+        <span class="badge">29 ans</span>
+        <span class="badge">Franco-Américain</span>
+        <span class="badge">Ancien leader – Gars du Bloc</span>
+        <span class="badge">Los Santos</span>
+        <span class="badge">Cité Ballas</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Résumé du dossier</div>
+      <p>Ce dossier présente la candidature de <b>Ruben Amari</b> pour la reprise et la restructuration de la Cité Ballas sur le serveur US FratWorld. Ancien leader des Gars du Bloc à Fraternity City, Ruben apporte une expérience éprouvée dans la gestion d'un territoire, la discipline interne et la création d'une identité de gang forte.</p>
+      <p>Le dossier est organisé en 8 sections accessibles via les onglets ci-dessus : identité, histoire, casier judiciaire, motivations & objectifs, personnalité, structure interne, code du gang, et mot du joueur.</p>
+    </div>
+  </div>
+
+  <!-- ── IDENTITÉ ── -->
+  <div class="tab-panel" id="tab-identite">
+    <div class="sec-title">01 — Identité du personnage</div>
+
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:1.5rem;">
+      <div style="background:var(--pd);padding:1.2rem 1.5rem;">
+        <div style="font-size:0.7rem;letter-spacing:2px;color:var(--pl);text-transform:uppercase;margin-bottom:6px;">Dossier personnel — Identification</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:4px;color:#fff;">RUBEN  AMARI</div>
+        <div style="font-size:0.82rem;color:var(--gold);">alias : [ Rub ]  &nbsp;|&nbsp;  Fraternity City → Los Santos US</div>
+      </div>
+    </div>
+
+    <table class="id-table">
+      <tr><td>Nom complet</td><td>Ruben Amari</td></tr>
+      <tr><td>Surnom / Alias</td><td>[ Rub ]</td></tr>
+      <tr><td>Âge</td><td>29 ans</td></tr>
+      <tr><td>Origine</td><td>Franco-Américain</td></tr>
+      <tr><td>Statut civil</td><td>Célibataire</td></tr>
+      <tr><td>Antécédents judiciaires</td><td>Oui — voir onglet Casier</td></tr>
+      <tr><td>Ancienne affiliation</td><td>Fraternity City / Gars du Bloc</td></tr>
+      <tr><td>Statut actuel</td><td>En transition / Serveur US (FratWorld)</td></tr>
+    </table>
+  </div>
+
+  <!-- ── HISTOIRE ── -->
+  <div class="tab-panel" id="tab-histoire">
+    <div class="sec-title">02 — Histoire du personnage</div>
+
+    <div class="card">
+      <div class="card-title">Les débuts / Fraternity City</div>
+      <p>Ruben Amari a grandi dans les rues de Fraternity City, un quartier que personne voulait vraiment connaître. Fils d'un père absent et d'une mère qui faisait de son mieux pour joindre les deux bouts, Ruben a très vite compris que dans ce genre d'endroit, soit t'es le prédateur soit t'es la proie.</p>
+      <p>Depuis tout petit, Ruben traînait avec les gars du coin. Pas par choix, plutôt par nécessité. Les rues c'était son école, le bloc c'était sa famille. À 16 ans il faisait déjà des petits coups avec les anciens — des petites livraisons, surveiller les coins chauds, ce genre de trucs.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">La montée en puissance / Gars du Bloc</div>
+      <p>En grandissant, Ruben s'est imposé comme un gars de confiance dans son quartier. Il avait une réputation : fidèle, discret, et efficace. Quand il fallait régler un problème, c'était lui qu'on appelait. Pas parce qu'il était le plus balèze, mais parce qu'il réfléchissait avant d'agir — une qualité rare dans les rues.</p>
+      <p>Il a progressivement pris une place importante au sein des Gars du Bloc à Fraternity. La cité lui appartenait, les gens le respectaient et ses frères lui faisaient confiance. Il a géré des affaires, réglé des conflits, assuré la sécurité du bloc. Pour beaucoup, Ruben c'était le quartier.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Le tournant / Pourquoi quitter Fraternity ?</div>
+      <p>Mais comme souvent dans ce milieu, rien ne dure éternellement. Une série d'événements que Ruben préfère garder pour lui ont forcé sa décision. Trahisons, pressions des autorités, perte de certains frères... La ville de Fraternity est devenue trop petite, trop dangereuse. Rester c'était risquer de tout perdre — ou pire.</p>
+      <p>Ruben a donc pris la décision la plus difficile de sa vie : tout laisser derrière lui. Son bloc, ses frères, ses habitudes. Et recommencer de zéro ailleurs. Pas par lâcheté — par intelligence. Parce que les vrais savent quand il faut savoir se repositionner.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">L'arrivée aux US / Un nouveau départ</div>
+      <p>Ruben débarque sur le serveur US avec rien d'autre que sa réputation et sa façon de faire. Il connaît personne, personne le connaît. Mais ça lui va — il a déjà tout reconstruit une fois, il sait comment ça marche. Il observe, il écoute, il analyse. Et quand l'opportunité se présente, il frappe.</p>
+      <p>Son objectif est clair : reprendre la Cité Ballas, s'y installer, y apporter sa structure et sa vision. Non pas pour la gloire, mais parce que c'est ce qu'il sait faire. Et cette fois, il compte faire les choses proprement, avec les bons gens autour de lui.</p>
+    </div>
+  </div>
+
+  <!-- ── CASIER ── -->
+  <div class="tab-panel" id="tab-casier">
+    <div class="sec-title">03 — Casier judiciaire & antécédents</div>
+
+    <table class="casier-table">
+      <thead>
+        <tr><th>Infraction</th><th>Détails</th><th>Statut</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Port d'arme illégal</td>
+          <td>Retrouvé en possession d'un calibre 9mm lors d'un contrôle routier</td>
+          <td class="status-green">Purgée</td>
+        </tr>
+        <tr>
+          <td>Trafic de stupéfiants</td>
+          <td>Interpellé lors d'une opération brigade des stups — manque de preuves</td>
+          <td class="status-blue">Classé</td>
+        </tr>
+        <tr>
+          <td>Voie de fait</td>
+          <td>Altercation avec un rival de quartier, blessures légères</td>
+          <td class="status-green">Purgée</td>
+        </tr>
+        <tr>
+          <td>Association de malfaiteurs</td>
+          <td>Liée aux activités des Gars du Bloc à Fraternity City</td>
+          <td class="status-orange">Non poursuivi</td>
+        </tr>
+        <tr>
+          <td>Recel de biens volés</td>
+          <td>Matériel électronique retrouvé lors d'une perquisition domiciliaire</td>
+          <td class="status-green">Purgée</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <p><em>Note : Ruben n'est pas fiché comme chef de gang à Fraternity. Malgré son implication connue des autorités locales, aucune preuve directe n'a permis de l'inculper pour direction de structure criminelle.</em></p>
+    </div>
+  </div>
+
+  <!-- ── MOTIVATIONS ── -->
+  <div class="tab-panel" id="tab-motivations">
+    <div class="sec-title">04 — Motivations & objectifs RP</div>
+
+    <div class="card">
+      <div class="card-title">Pourquoi les Ballas ?</div>
+      <p>Ruben a mené ses recherches avant de poser ses valises. Les Ballas c'est pas n'importe quel gang — ils ont une histoire qui remonte aux années 70 dans les rues de Los Santos. Une identité forte, le violet comme couleur, et une présence qui s'étend sur plusieurs sets. C'est exactement le genre de structure dans laquelle Ruben sait évoluer.</p>
+      <p>Il n'est pas venu voler la place de quelqu'un — il est venu combler un vide et redonner une structure à un bloc qui en a besoin.</p>
+
+      <div class="sets-grid">
+        <div class="set-card">
+          <div class="set-name">Front Yard</div>
+          <div class="diamond">◆</div>
+          <div class="set-zone">Idlewood / East LS</div>
+        </div>
+        <div class="set-card">
+          <div class="set-name">Rollin' Heights</div>
+          <div class="diamond">◆</div>
+          <div class="set-zone">Jefferson</div>
+        </div>
+        <div class="set-card">
+          <div class="set-name">Kilo Tray</div>
+          <div class="diamond">◆</div>
+          <div class="set-zone">Glen Park</div>
+        </div>
+        <div class="set-card">
+          <div class="set-name">Temple Drive</div>
+          <div class="diamond">◆</div>
+          <div class="set-zone">Verona Beach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">La rivalité Grove Street — position de Ruben</div>
+      <div class="grove-box">
+        <p>Ruben arrive pas à Los Santos en ignorant l'histoire. Il sait que les Ballas et les Grove Street Families se font la guerre depuis des décennies. Il respecte ça. Cette rivalité c'est pas un problème — <b>c'est une richesse RP.</b></p>
+        <p>Sa position est claire : il entretient la tension, pas le chaos. Ruben veut une rivalité <b>crédible et jouée</b>, pas des gunfights gratuits sans contexte. Il cherche les confrontations qui ont du sens — un territoire disputé, un deal qui tourne mal, une provocation qui escalade progressivement.</p>
+        <p>Il compte établir des <b>règles d'engagement claires</b> en interne : on répond aux provocations, on initie pas sans raison valable. Chaque action contre les GSF doit avoir une logique RP derrière.</p>
+        <p>L'objectif à terme : faire de cette rivalité <b>un des arcs narratifs les plus forts du serveur US</b>. Deux blocs avec une vraie histoire, des tensions, des trahisons possibles, et des moments qui marquent tout le serveur.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Objectifs à court terme</div>
+      <ul class="bullet-list">
+        <li>S'installer sur le territoire Ballas et établir une présence physique reconnue</li>
+        <li>Prendre contact avec les résidents pour identifier les alliés potentiels</li>
+        <li>Sécuriser les activités de base : points de deal, flux d'argent, logistique</li>
+        <li>Recruter des membres fiables — qualité plutôt que quantité</li>
+        <li>Établir une réputation solide sur le serveur US dès les premières semaines</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Objectifs à long terme</div>
+      <ul class="bullet-list">
+        <li>Faire de la Cité Ballas un territoire incontournable sur le serveur US</li>
+        <li>Développer des alliances stratégiques avec d'autres groupes RP</li>
+        <li>Monter des activités illicites organisées : trafics, blanchiment, racket</li>
+        <li>Asseoir l'autorité de Ruben comme chef reconnu et crédible sur le serveur</li>
+        <li>Créer une véritable culture de gang avec codes, traditions et histoire propre</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── PERSONNALITÉ ── -->
+  <div class="tab-panel" id="tab-perso">
+    <div class="sec-title">05 — Personnalité & façon de jouer</div>
+
+    <div class="perso-grid">
+      <div class="perso-card strengths">
+        <h3>✔ Points forts</h3>
+        <ul>
+          <li>Calme et posé sous pression</li>
+          <li>Stratège — réfléchit avant d'agir</li>
+          <li>Loyal envers ceux qui le méritent</li>
+          <li>Bon gestionnaire, sens de l'organisation</li>
+          <li>Charisme naturel, les gens l'écoutent</li>
+        </ul>
+      </div>
+      <div class="perso-card weaknesses">
+        <h3>✖ Points faibles</h3>
+        <ul>
+          <li>Méfiant de nature, long à accorder sa confiance</li>
+          <li>Rancunier — oublie jamais une trahison</li>
+          <li>Peut être impitoyable quand provoqué</li>
+          <li>A du mal à déléguer le contrôle</li>
+          <li>Passé lourd qui peut le rattraper</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Style de jeu RP</div>
+      <p>Ruben est joué comme un personnage de chef de rue réaliste : il prend le temps de développer ses relations avant de demander quoi que ce soit. Il préfère la négociation à la confrontation directe, mais n'hésite pas à monter le ton si ça devient nécessaire. Il incarne un leader de rue crédible — ni surpuissant ni fragile.</p>
+      <p>Le joueur derrière Ruben privilégie les interactions profondes et significatives. Pas de RP inutile ou de drama gratuit. Chaque action a une logique, chaque décision a une conséquence assumée.</p>
+    </div>
+  </div>
+
+  <!-- ── STRUCTURE ── -->
+  <div class="tab-panel" id="tab-structure">
+    <div class="sec-title">06 — Structure interne & recrutement</div>
+
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:1.2rem;">
+      <table class="hier-table">
+        <thead>
+          <tr><th>Grade</th><th>Rôle</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>OG — El Jefe</b></td>
+            <td>Chef suprême / Ruben Amari</td>
+            <td class="status-green">Occupé ✓</td>
+          </tr>
+          <tr>
+            <td><b>Bras Droit</b></td>
+            <td>Second, gestion interne et conflits</td>
+            <td class="status-orange">À recruter</td>
+          </tr>
+          <tr>
+            <td><b>Dealer</b></td>
+            <td>Responsables de sets / activités</td>
+            <td class="status-orange">À recruter</td>
+          </tr>
+          <tr>
+            <td><b>Membre</b></td>
+            <td>Membres actifs, terrain</td>
+            <td class="status-orange">À recruter</td>
+          </tr>
+          <tr>
+            <td><b>Recrue</b></td>
+            <td>Nouveaux — période d'essai obligatoire</td>
+            <td class="status-blue">Ouvert</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Critères de recrutement</div>
+      <p>Ruben est sélectif. Il préfère 5 membres fiables à 20 personnes dont la moitié vont disparaître après une semaine.</p>
+      <ul class="bullet-list" style="margin-top:0.8rem;">
+        <li>Joueur actif et impliqué dans le RP — pas juste là pour les gunfights</li>
+        <li>Capable de jouer un personnage cohérent et consistant dans le temps</li>
+        <li>Pas d'historique de mauvais RP ou de comportement toxique reconnu</li>
+        <li>Disponible sur le long terme — pas juste pour un event ou deux</li>
+        <li>Respectueux des règles du serveur et de l'univers RP</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── CODE ── -->
+  <div class="tab-panel" id="tab-code">
+    <div class="sec-title">07 — Code du gang & règles internes</div>
+
+    <p style="margin-bottom:1.2rem;font-size:0.9rem;">La Cité Ballas sous Ruben Amari fonctionne avec des règles claires. Ces règles ne sont pas négociables — elles définissent qui on est et comment on se comporte.</p>
+
+    <div class="rules-grid">
+      <div class="rule-row">
+        <div class="rule-num">01</div>
+        <div class="rule-text">La loyauté avant tout. On trahit pas les siens, jamais. Une trahison est sanctionnée sans exception.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">02</div>
+        <div class="rule-text">Le respect est obligatoire entre membres, avec les alliés, et même avec les adversaires tant que ça reste professionnel.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">03</div>
+        <div class="rule-text">On règle pas nos problèmes en public. Tout conflit interne se discute en interne, pas devant tout le serveur.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">04</div>
+        <div class="rule-text">Pas de coups de tête inutiles. On agit avec logique — une décision prise dans la colère coûtera toujours plus cher.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">05</div>
+        <div class="rule-text">Chaque membre est responsable de ses actes. Si t'as merdé, t'assumes — le gang paye pas pour tes erreurs personnelles.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">06</div>
+        <div class="rule-text">L'information c'est précieux. On partage pas les affaires internes avec des outsiders, peu importe la situation.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">07</div>
+        <div class="rule-text">Les anciens sont respectés. L'expérience se respecte dans ces rues.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-num">08</div>
+        <div class="rule-text">On grandit ensemble. Les membres qui évoluent, le gang évolue avec eux.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOT DU JOUEUR ── -->
+  <div class="tab-panel" id="tab-joueur">
+    <div class="sec-title">08 — Mot du joueur</div>
+
+    <div class="quote-box">
+      <p>Salut à tous, je suis le joueur derrière Ruben Amari. Je viens de la ville de Fraternity sur le serveur FR où j'ai géré une cité pendant un moment. J'ai décidé de relancer mon histoire sur le serveur US avec un nouveau perso mais le même ADN.</p>
+      <p>Ce qui m'intéresse c'est le RP de qualité. J'aime construire des trucs sur la durée, développer des relations entre personnages, et créer des situations intéressantes pour tout le monde. Je suis pas là juste pour les gunfights — j'aime les histoires.</p>
+      <p>Je cherche des gens qui ont la même vision. Si t'as envie de t'investir dans quelque chose de sérieux et de construit, viens me voir IG. Les portes sont ouvertes pour ceux qui le méritent.</p>
+      <div class="quote-sig">Ruben Amari  |  FratWorld US  |  Purple Nation ◆</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  Cité Ballas &nbsp;◆&nbsp; Ruben Amari &nbsp;◆&nbsp; FratWorld US &nbsp;◆&nbsp; Purple Nation
+</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
